@@ -1,0 +1,11 @@
+.Bordure {
+    border-width:5px;
+    border-style :solid;
+    border-color :#020659;
+    padding:2px;
+    margin: 25px;
+    text-align: center;
+}
+h1,h2,h3{
+    font-weight: bold;
+}
