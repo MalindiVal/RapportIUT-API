@@ -1,0 +1,8 @@
+﻿################################################################################
+# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
+################################################################################
+
+/Serveur/API/obj
+/Serveur/Tests/bin/Debug/net8.0
+/Serveur/Tests/obj/Debug/net8.0
+/Serveur/Tests/obj
