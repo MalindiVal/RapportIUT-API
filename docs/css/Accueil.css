@@ -1,0 +1,64 @@
+h1.Titre{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+a.lien {
+    color: #3FA693
+}
+a.lien:hover {
+    color: #020659;
+}
+
+.carre {
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+}
+
+div#options{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+div.option a{
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.icon{
+    background-color: #3FA693;
+    width: 150px;
+    height: 150px;
+    border-style: solid;
+    border-color: black;
+    padding:10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.iconp {
+    color: #3FA693;
+    font-size: large;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+a:hover .iconp {
+    font-style: italic;
+    color: black;
+}
+
+a:hover .icon{
+    background-color: #ffffff;
+    border-color: #3FA693;
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
