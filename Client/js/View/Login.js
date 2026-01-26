@@ -36,7 +36,7 @@ class LoginView{
                 const token = sessionStorage.getItem("token");
                 if (token)
                 {   
-                    window.location.href = "Accueil.html";
+                    window.location.href = "index.html";
                 }
                 else{
                     this.passwordInput.value = "";
