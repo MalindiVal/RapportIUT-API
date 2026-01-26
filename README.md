@@ -1,3 +1,6 @@
+https://github.com/MalindiVal/S3_B2_ReMOVe/workflows/docker.yml/badge.svg
+https://github.com/MalindiVal/S3_B2_ReMOVe/workflows/publish.yml/badge.svg
+
 # RapportIUT
 
 Une application web réalisée en HTML/CSS/JS connecté à une API ASP.NET
