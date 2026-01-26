@@ -46,7 +46,7 @@ class RapportView extends View {
                 await this._rapportDao.DeleteRapport(this.rapport.id);
 
                 alert('Rapport supprimé avec succès');
-                window.location.href = 'VisualisationAll.html'; //Redirection vers la page de visualisation des rapports
+                window.location.href = 'visualisationAll.html'; //Redirection vers la page de visualisation des rapports
             } 
             catch (error) {
                 console.error(error);

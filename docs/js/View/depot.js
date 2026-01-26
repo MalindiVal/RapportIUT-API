@@ -392,7 +392,7 @@ class DepotView extends View{
                 this.divfeedback.classList.add("good");
 
                 alert("Le rapport " + document.getElementById("TitreVrai").value + " a été envoyé");
-                window.location = "VisualisationUnique.html?id="+this.rapport.Id;
+                window.location = "visualisationUnique.html?id="+this.rapport.Id;
             }
             
             //Erreur si l'envoit échoue
