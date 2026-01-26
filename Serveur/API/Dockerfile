@@ -13,7 +13,7 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet dev-certs https --trust
 WORKDIR /src
 COPY ["API.csproj", "./"]
-RUN dotnet restore "./API/API.csproj"
+RUN dotnet restore "./API.csproj"
 COPY . .
 WORKDIR "/src/API"
 RUN dotnet build "./API.csproj" -c $BUILD_CONFIGURATION -o /app/build
