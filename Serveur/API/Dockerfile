@@ -12,7 +12,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet dev-certs https --trust
 WORKDIR /src
-COPY ["API/API.csproj", "API/"]
+COPY ["API.csproj", "./"]
 RUN dotnet restore "./API/API.csproj"
 COPY . .
 WORKDIR "/src/API"
@@ -27,5 +27,5 @@ WORKDIR /app
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path="/https/thecertif.pfx"
 COPY --from=publish --chmod=444 /root/.dotnet/corefx/cryptography/x509stores/my/* /https/thecertif.pfx
 COPY --from=publish /app/publish .
-COPY --chmod=666 ["API/ReMOVeDataBaseSQLite.db", "."]
+COPY --chmod=666 ["ReMOVeDataBaseSQLite.db", "."]
 ENTRYPOINT ["dotnet", "API.dll"]
