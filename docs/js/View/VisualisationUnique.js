@@ -175,7 +175,7 @@ class RapportView extends View {
         console.error('Erreur dans RapportView:', error);
         this.errorContainer.textContent = `Une erreur est survenue: ${error.message}`;
         this.errorContainer.style.display = 'block';
-        this.preview.src = "./autres/vide.html"; // Image d'erreur par défaut
+        this.preview.src = "autres/vide.html"; // Image d'erreur par défaut
     }
 
     /**

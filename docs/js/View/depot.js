@@ -276,7 +276,7 @@ class DepotView extends View{
     
             reader.readAsDataURL(file);
         } else {
-            this.preview.src = "./autres/insertion.html"; 
+            this.preview.src = "autres/insertion.html"; 
         }
         
         this.changeButton();
