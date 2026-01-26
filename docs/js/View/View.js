@@ -48,7 +48,6 @@ class View{
     ResetTimer(){
         clearTimeout(this.timer);
         this.StartTimer();
-        console.log("reset")
     }
 
 }
