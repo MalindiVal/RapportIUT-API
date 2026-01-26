@@ -4,6 +4,7 @@
 # RapportIUT
 
 Une application web réalisée en HTML/CSS/JS connecté à une API ASP.NET
+Lien vers le site : ![Application](https://malindival.github.io/S3_B2_ReMOVe/)
 
 ## Strucure du projet
 ### Client
