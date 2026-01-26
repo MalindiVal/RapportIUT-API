@@ -4,7 +4,7 @@ on:
     branches: [ 'main' ]
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: monuser/monapp
+  IMAGE_NAME: valmini242/rapportiut
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
