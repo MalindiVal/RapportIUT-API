@@ -5,15 +5,15 @@ class View{
     constructor(){
 
         const token = sessionStorage.getItem("token");
-        if (window.location.href != "login.html" && window.location.href != "register.html" && token == null){
-            window.location='login.html'
+        if (window.location.href != "pages/login.html" && window.location.href != "register.html" && token == null){
+            window.location='pages/login.html'
         } else {
             this.btnDeconnexion = document.getElementById("logout");
         
             //Nettoyage de la session après une deconnexion
             this.btnDeconnexion.addEventListener("click", () => {
                 sessionStorage.clear;
-                window.location='login.html'
+                window.location='pages/login.html'
             });
             this.StartTimer();
             window.addEventListener("click", () => this.ResetTimer())
@@ -25,11 +25,11 @@ class View{
      * Permet de déconnecter l'utiisateur à la fin du chronomètre
      */
     Disconect(){
-        if (window.location.href != "login.html" && window.location.href != "register.html"){
+        if (window.location.href != "pages/login.html" && window.location.href != "register.html"){
             localStorage.clear();
             sessionStorage.clear();
             alert("Timeout");
-            window.location = "login.html";
+            window.location = "pages/login.html";
         }
     }
 
