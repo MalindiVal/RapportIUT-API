@@ -15,7 +15,7 @@ WORKDIR /src
 COPY ["API.csproj", "./"]
 RUN dotnet restore "./API.csproj"
 COPY . .
-WORKDIR "/src/API"
+WORKDIR "/src"
 RUN dotnet build "./API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
