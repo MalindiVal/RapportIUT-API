@@ -47,7 +47,7 @@ class LoginView{
             user.Role = await this.userDAO.Register(user);
 
             alert("Enregistrement réussi");
-            window.location.href = "Login.html";
+            window.location.href = "login.html";
             
         } 
         //Erreur si l'enregistrement n'a pas marché

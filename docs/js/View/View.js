@@ -5,7 +5,7 @@ class View{
     constructor(){
 
         const token = sessionStorage.getItem("token");
-        if (window.location.href != "Login.html" && window.location.href != "Register.html" && token == null){
+        if (window.location.href != "login.html" && window.location.href != "register.html" && token == null){
             window.location='login.html'
         } else {
             this.btnDeconnexion = document.getElementById("logout");
@@ -25,11 +25,11 @@ class View{
      * Permet de déconnecter l'utiisateur à la fin du chronomètre
      */
     Disconect(){
-        if (window.location.href != "Login.html" && window.location.href != "Register.html"){
+        if (window.location.href != "login.html" && window.location.href != "register.html"){
             localStorage.clear();
             sessionStorage.clear();
             alert("Timeout");
-            window.location = "Login.html";
+            window.location = "login.html";
         }
     }
 
