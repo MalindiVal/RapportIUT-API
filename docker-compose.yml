@@ -2,7 +2,7 @@ services:
   api:
     container_name: api
     build:
-      context: ./Serveur
+      context: ./Serveur/API
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
