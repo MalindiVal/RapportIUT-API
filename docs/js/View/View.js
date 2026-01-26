@@ -6,14 +6,22 @@ class View{
 
         const token = sessionStorage.getItem("token");
         if (!window.location.href.endsWith("login.html") && !window.location.href.endsWith("register.html") && !token){
-            window.location='login.html';
+            if(window.location.href.endsWith("index.html")){
+                window.location='pages/login.html';
+            } else {
+                window.location='login.html';
+            }
         } else {
             this.btnDeconnexion = document.getElementById("logout");
         
             //Nettoyage de la session après une deconnexion
             this.btnDeconnexion.addEventListener("click", () => {
                 sessionStorage.clear();  // Il manquait les parenthèses pour appeler clear
-                window.location='login.html';
+                if(window.location.href.endsWith("index.html")){
+                    window.location='pages/login.html';
+                } else {
+                    window.location='login.html';
+                }
             });
 
             this.StartTimer();
