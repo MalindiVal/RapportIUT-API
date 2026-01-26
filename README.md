@@ -1,4 +1,6 @@
-https://github.com/MalindiVal/S3_B2_ReMOVe/workflows/docker.yml/badge.svg
+![Docker](https://github.com/MalindiVal/S3_B2_ReMOVe/actions/workflows/docker.yml/badge.svg)
+![Publish](https://github.com/MalindiVal/S3_B2_ReMOVe/actions/workflows/publish.yml/badge.svg)
+
 https://github.com/MalindiVal/S3_B2_ReMOVe/workflows/publish.yml/badge.svg
 
 # RapportIUT
