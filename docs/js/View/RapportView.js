@@ -5,8 +5,6 @@ class RapportView extends View {
 
     constructor() {
 
-        super();
-
         //initialisation
         
 
