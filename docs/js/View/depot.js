@@ -80,13 +80,13 @@ class DepotView extends View{
                        
             this.rapport.Titre = document.getElementById("TitreVrai").value;
             this.rapport.Confidential = document.querySelector("input#confidential").checked;
-            this.rapport.Fichier = document.querySelector("input[type='file']").files[0].name;
+            this.rapport.Fichier = await this._UploadHandler.UploadFile(this.fileselect.files);
 
             //Ajout du rapport dans la base de données
             this.rapport = await this._rapportDao.AddRapport(this.rapport);
 
         } catch (error) {
-            throw new Error('Echec d\'insertion de rapports'); // Optionally re-throw the error for higher-level handling
+            throw new Error('Echec d\'insertion de rapports : ' + error); // Optionally re-throw the error for higher-level handling
         }
     }
 
@@ -385,8 +385,7 @@ class DepotView extends View{
                 this.AddTags();
                 this.AddCompany();
                 this.AddProf()
-                await this.AddRapport();
-                await this.UploadFile();
+                await this.AddRapport();               
         
                 this.divfeedback.innerHTML = "Envoi réussi";
                 this.divfeedback.classList.add("good");
@@ -398,7 +397,7 @@ class DepotView extends View{
             //Erreur si l'envoit échoue
         } catch (error) {
             this.divfeedback.classList.add("bad");
-            this.divfeedback.innerHTML = "Echec de l'envoi : " + error;
+            this.divfeedback.innerHTML = error;
         }
     }
 
@@ -435,18 +434,6 @@ class DepotView extends View{
             let btnvalidate = document.getElementById("valider");        
             btnvalidate.className = "bouton";
         }
-    }
-
-    //Permet d'envoyer le fichier
-    async UploadFile(){
-        try{
-            await this._UploadHandler.UploadFile(this.fileselect.files);
-        }
-        //Erreur si l'envoit ne fonctionne pas 
-        catch (error) {
-            throw new Error('Echec de l\'upload du fichier');
-        }
-        
     }
 
 }

@@ -62,7 +62,7 @@ namespace API.Services.Realisations
                 {
                     throw new DAOError("Referent inexistant");
                 }
-                    r = dao.AddRapport(r);
+                r = dao.AddRapport(r);
                 foreach (TagClass t in r.Tags)
                 {
                     this.dao.TaguerRapport(r.Id, t.Id);
@@ -139,8 +139,8 @@ namespace API.Services.Realisations
             try
             {
                 Rapport r = dao.GetById(id_rapport);
-                dao.DeleteRapport(id_rapport, login, role);
                 if (r != null){
+                    dao.DeleteRapport(id_rapport, login, role);
                     this.filehandler.DeleteFile(r.Fichier);
                 }
                 
