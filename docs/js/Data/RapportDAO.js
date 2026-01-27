@@ -14,12 +14,13 @@ class RapportDAO extends IRapportDAO{
      */
     async AddRapport(rapport){
 
+        let response = null;
         try {
 
             const token = sessionStorage.getItem("token");
             let json = JSON.stringify(rapport);
             let apiUrl = this.Dao.adresseAPI +'Rapports/AddRapport';
-            const response = await fetch(apiUrl, {
+            response = await fetch(apiUrl, {
                 method: 'post',
                 headers : {
                     "Content-type": "application/json",
@@ -71,7 +72,7 @@ class RapportDAO extends IRapportDAO{
             }
         //Si la suppression a échoué on renvoit une erreur
         } catch (error) {
-            throw new Error(error.message);
+            throw new Error(error.statusText);
         }
     }
 
@@ -80,7 +81,7 @@ class RapportDAO extends IRapportDAO{
      * @returns {number} le nombre de page a afficher
      * @throws {Error} l'erreur qui sera capturer si il y en a une lors de la récuperation du nombre de page.
      */
-    async GetNombrePage(login, role)
+    async GetNombrePage()
     {
         try 
         {
@@ -107,7 +108,7 @@ class RapportDAO extends IRapportDAO{
         //Si une erreur est survenue, on la lance
         }catch (error) 
         {
-            throw new Error("An error occurred while fetching number of page:", error);
+            throw error;
         }
     }
 
@@ -142,7 +143,7 @@ class RapportDAO extends IRapportDAO{
         //Si une erreur est survenue, on la lance
         catch (error) 
         {
-            throw new Error("An error occurred while fetching number of page:", error);
+            throw error;
         }
     }
 
@@ -186,7 +187,7 @@ class RapportDAO extends IRapportDAO{
         //Si une erreur est survenue, on la lance
         catch (error) 
         {
-            throw new Error("Echec lors de la récupèratoin des données du rapport:", error);
+            throw error;
         }
     }
 
@@ -277,7 +278,7 @@ class RapportDAO extends IRapportDAO{
         //Si une erreur est survenue, on la lance
         } catch (error) {
             throw new Error("An error occurred while fetching report:", error);
+        }
     }
-}
 
 }

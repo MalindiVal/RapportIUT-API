@@ -8,13 +8,16 @@ class UploadeHandler extends IUploadeHandler{
     }
 
     async UploadFile(files){
+        
+        let response = null;
+
         try {
             if (files.length > 0)
             {
                 let formData = new FormData();
                 formData.append("file", files[0]); 
                 let apiurl = this.Dao.adresseAPI + "Upload/UploadRapport";
-                const response = await fetch(apiurl, {
+                response = await fetch(apiurl, {
                     method: 'POST',
                     body: formData, 
                 });
@@ -23,7 +26,7 @@ class UploadeHandler extends IUploadeHandler{
                     throw new Error();
                 }
 
-                const data = await response.json();
+                const data = await response.text();
                 return data
             }
         }
