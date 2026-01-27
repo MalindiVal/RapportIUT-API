@@ -144,7 +144,7 @@ class VisualisationAll extends View {
             let listeRapportAfficher = document.createElement('div');
             listeRapportAfficher.Id = "listeRapportAfficher"+this.rapports[i].id;
             listeRapportAfficher.classList.add('rapport');
-            listeRapportAfficher.innerHTML = `<a href=\"visualisationUnique.html?id=${this.rapports[i].id}\"><div> <h2>${this.rapports[i].titre}</h2><br/><h3>${this.rapports[i].auteur.auteur}</h3><p class="date">${date}</p></div><div id="taglist${this.rapports[i].id}"></div></a>`;
+            listeRapportAfficher.innerHTML = `<a href=\"rapport.html?id=${this.rapports[i].id}\"><div> <h2>${this.rapports[i].titre}</h2><br/><h3>${this.rapports[i].auteur.auteur}</h3><p class="date">${date}</p></div><div id="taglist${this.rapports[i].id}"></div></a>`;
             return listeRapportAfficher;
     }
 
