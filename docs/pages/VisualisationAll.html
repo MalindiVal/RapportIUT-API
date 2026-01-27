@@ -25,87 +25,55 @@
     <title>Page de consultation</title>
 </head>
 <body>
-    <header>
-    </header>
 
-    <main>
-        <div class="container bg-light">
-  <form class="row g-3 align-items-end">
-    <div class="">
-      <label for="tag" class="form-label">Mots-clés <a class="infoBulle tooltip" title="Rentrer les mots-clés qui vous intéressent qui pourrait correspondre à votre recherche (les départements d'études étant obligatoire à la création du rapport)">?</a></label>
-      <input type="text" class="form-control" id="tag" placeholder="Tag">
-    </div>
-    <div class="">
-      <label for="NomEx" class="form-label">Nom d'auteur <a class="infoBulle tooltip" title="Rentrer le nom de l'auteur du rapport cherché">?</a></label>
-      <input type="text" class="form-control" id="NomEx" placeholder="Nom">
-    </div>
-    <div class="">
-      <label for="TitreEx" class="form-label">Titre <a class="infoBulle tooltip" title="Rentrer le titre du rapport voulu">?</a></label>
-      <input type="text" class="form-control" id="TitreEx" placeholder="Titre">
-    </div>
-    <div class="">
-      <label for="EntreEx" class="form-label">Nom entreprise <a class="infoBulle tooltip" title="Rentrer le nom d'entreprise voulu">?</a></label>
-      <input type="text" class="form-control" id="EntreEx" placeholder="Entreprise">
-    </div>
-    <div class="col-12 text-end">
-      <button type="button" class="btn btn-primary" id="search">Rechercher</button>
-    </div>
-  </form>
-</div>
-
-
-
-
-        <div id="feedback">
-            <h1 class="Titre">Bibliothèque de rapports</h1>
-
-            <div class="listeRapport">
-                <div id="contenuRapport">
+    <main class="container-fluid row my-5 justify-content-center align-items-start">
+        <div class="container col-3 me-4">
+            <form class="row g-3">
+                <div class="">
+                <label for="tag" class="form-label">Mots-clés <a class="infoBulle tooltip" title="Rentrer les mots-clés qui vous intéressent qui pourrait correspondre à votre recherche (les départements d'études étant obligatoire à la création du rapport)">?</a></label>
+                <input type="text" class="form-control" id="tag" placeholder="Tag">
                 </div>
-                
-                <div class="container">
-                    <ul class="pagination" id="pagination">
-                    </ul>
+                <div class="">
+                <label for="NomEx" class="form-label">Nom d'auteur <a class="infoBulle tooltip" title="Rentrer le nom de l'auteur du rapport cherché">?</a></label>
+                <input type="text" class="form-control" id="NomEx" placeholder="Nom">
+                </div>
+                <div class="">
+                <label for="TitreEx" class="form-label">Titre <a class="infoBulle tooltip" title="Rentrer le titre du rapport voulu">?</a></label>
+                <input type="text" class="form-control" id="TitreEx" placeholder="Titre">
+                </div>
+                <div class="">
+                <label for="EntreEx" class="form-label">Nom entreprise <a class="infoBulle tooltip" title="Rentrer le nom d'entreprise voulu">?</a></label>
+                <input type="text" class="form-control" id="EntreEx" placeholder="Entreprise">
+                </div>
+                <div class="col-12 text-end">
+                <button type="button" class="btn btn-primary" id="search">Rechercher</button>
+                </div>
+            </form>
+        </div>
+
+
+
+
+        <div id="feedback" class="col container">
+            <h1 class="Titre row">Bibliothèque de rapports</h1>
+
+            <div class="listeRapport row">
+                <div id="contenuRapport">
                 </div>
             </div>
 
+            <div class="container row" id="paginationContainer">
+                    <ul class="pagination" id="pagination">
+                    </ul>
+                </div>
+
         </div>   
 
-        <div>
+        <div class="col-2">
             <div class=" importbu">
                 <input class="bouton" type="button" name="button" onclick="window.location='depot.html'" value="Importer"/>
             </div>
         </div>
     </main>
-
-    <footer id="gk-footer" class="gk-page">
-        <div>
-        </div>
-
-        <div>
-            <img class="image" src="../images/Logo-blanc.png" alt="logos de l'IUT et de l'uB" />
-        </div>
-
-        <div class="dib">
-            <p><strong>Institut Universitaire de Technologie :</strong>
-                <br>
-                    <i>Campus de DIJON</i><br>Boulevard Docteur Petitjean<br>BP 17867 - 21078 Dijon cedex<br>FRANCE<br>Tél. : +33 3 80 39 65 95<br>Fax : +33 3 80 39 64 64
-                <br>
-                <br>
-                    <i>Campus d'Auxerre</i><br>Routes des Plaines de l'Yonne<br>89000 Auxerre<br>FRANCE<br>Tél. : +33 3 86 49 28 08
-                <br>
-                <br>
-                    <i>Campus de Nevers</i><br>21 Rue de l'Université<br>58000 Nevers<br>FRANCE<br>Tél. : +33 3 86 71 50 47
-            </p>
-        </div>
-
-        <div class="souli">
-            <a onclick="window.location='cookies.html'">Gestion des Cookies</a> <br>
-            <a onclick="window.location='mentions.html'">Mentions légales</a>
-        </div>
-        
-        <div class="gk-copyrights">
-        </div>
-    </footer>
 </body>
 </html>

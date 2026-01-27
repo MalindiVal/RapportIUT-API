@@ -10,11 +10,6 @@ h1.Titre{
   align-items: center;
 }
 
-main{
-display: grid;
-grid-template-columns: 1fr 2fr 1fr;
-}
-
 .infoBulle{
   background:#2C2E59;
   color :white;
@@ -93,14 +88,11 @@ margin-top: 100px;
 margin-left: 15%;
 }
 
-
-
 /*Liste des rapports*/
 
 .listeRapport{
 background-color: #d6f0ff;
-width:2fr;
-border-radius: 5%;
+height: auto;
 padding-top: 30px;
 box-shadow: -3px -3px 7px #9ecfe0, 3px 3px 5px rgba(94, 104, 121, 0.288);
 }
@@ -126,14 +118,10 @@ width : 100px;
 height: 100px;
 }
 
-
-.container {
-background: #beedff;
-padding: 1px;
-margin: 50px;
-border-radius: 3px;
-box-shadow: -3px -3px 7px #9ecfe0, 3px 3px 5px rgba(94, 104, 121, 0.288);
+div#feedback {
+    height: 100%;
 }
+
 .pagination {
 display: flex;
 list-style: none;

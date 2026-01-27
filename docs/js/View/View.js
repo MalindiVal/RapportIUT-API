@@ -20,6 +20,8 @@ class View {
             // Crée le header dynamique
             this.DisplayHeader();
 
+            this.DisplayFooter();
+
             // Démarrage du chronomètre de session
             this.StartTimer();
 
@@ -150,6 +152,67 @@ class View {
             localStorage.clear();
             window.location = "login.html";
         });
+    }
+
+    DisplayFooter() {
+        let footer = document.createElement("footer");
+        footer.className = "bg-dark text-white py-4";
+
+        let container = document.createElement("div");
+        container.className = "container";
+
+        let row = document.createElement("div");
+        row.className = "row align-items-center";
+
+        // Logo column
+        let colLogo = document.createElement("div");
+        colLogo.className = "col-md-4 mb-3 d-flex justify-content-center justify-content-md-start";
+        let img = document.createElement("img");
+        img.alt = "Logo IUT";
+        img.className = "img-fluid";
+        
+
+        // Text column
+        let colText = document.createElement("div");
+        colText.className = "col-md-4 mb-3 text-center text-md-start";
+        let p = document.createElement("p");
+        let strong = document.createElement("strong");
+        strong.textContent = "Institut Universitaire de Technologie :";
+        p.appendChild(strong);
+        p.innerHTML += "<br><i>Campus de DIJON</i><br>Boulevard Docteur Petitjean<br>BP 17867 - 21078 Dijon cedex<br>FRANCE<br>Tél. : +33 3 80 39 65 95";
+        colText.appendChild(p);
+
+        // Links column
+        let colLinks = document.createElement("div");
+        colLinks.className = "col-md-4 mb-3 text-center text-md-end";
+        let a1 = document.createElement("a");
+        a1.className = "text-white d-block mb-1";
+        a1.textContent = "Gestion des Cookies";
+        let a2 = document.createElement("a");
+        a2.className = "text-white d-block";
+        a2.textContent = "Mentions légales";
+
+
+        if (window.location.href.endsWith("index.html")) {
+                a2.href = "pages/mentions.html";
+                a1.href = "pages/cookies.html";
+                img.src = "images/Logo-blanc.png";
+            } else {
+                a2.href = "mentions.html";
+                a1.href = "cookies.html";
+                img.src = "../images/Logo-blanc.png";
+            }
+        colLogo.appendChild(img);
+        colLinks.appendChild(a1);
+        colLinks.appendChild(a2);
+
+        row.appendChild(colLogo);
+        row.appendChild(colText);
+        row.appendChild(colLinks);
+        container.appendChild(row);
+        footer.appendChild(container);
+
+        document.body.appendChild(footer);
     }
 
 

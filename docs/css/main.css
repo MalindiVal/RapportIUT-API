@@ -155,13 +155,6 @@ header h1
     outline: none !important;
 }
 
-footer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    unicode-bidi: isolate;
-    bottom:0;
-}
-
 .dib {
     display: inline-block;
     font-family: Arial, Helvetica, sans-serif;
