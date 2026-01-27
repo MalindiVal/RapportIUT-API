@@ -55,17 +55,7 @@ class IRapportDAO{
     async GetNombreRapport(id){
         throw new Error('You must implement this function');
     }
-
-    /**
-     * Permet de taguer un rapport avec un mot clé
-     * @param {number} id_rapport - Le rapport visé
-     * @param {number} id_tag - Le tag à ajouter au rapport
-     * @throws {Error} l'erreur si le tag n'a pas pu être affilié au rapport
-     */
-    async TaguerRapport(id_rapport, id_tag){ 
-        throw new Error('You must implement this function');
-    }
-
+    
     /**
      * Filtrer les rapports
      * @param {string} titre le titre à rechercher
@@ -75,15 +65,6 @@ class IRapportDAO{
      * @returns les rapports récupérés
      */
     async Filter(titre, tags, entreprise,auteur){ 
-        throw new Error('You must implement this function');
-    }
-
-    /**
-     * Permet de taguer un rapport avec un mot clé
-     * @param {string} titre - Le rapport visé
-     * @throws {Error} l'erreur qui sera capturée si la récuperation des rapports
-     */
-    async GetRapportByTitre(titre){ 
         throw new Error('You must implement this function');
     }
 

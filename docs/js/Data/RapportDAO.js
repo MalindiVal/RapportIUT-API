@@ -221,25 +221,7 @@ class RapportDAO extends IRapportDAO{
         //Si une erreur est survenue, on la lance
         catch (error) 
         {
-            throw new Error("An error occurred while fetching number of page:", error);
-        }
-    }
-    
-
-    async TaguerRapport(id_rapport, id_tag){
-        let apiUrl = this.Dao.adresseAPI +'Rapports/TaguerRapport?id_rapport='+id_rapport+'&id_tag='+id_tag;
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'post'
-            });
-
-            //Si la réponse n'est pas ok, on lance une erreur
-            if (response.status != 200) {
-                throw new Error("Network response was not ok");
-            }
-        //Si une erreur est survenue, on la lance
-        } catch (error) {
-            throw new Error(response.statusText);
+            throw error;
         }
     }
 
@@ -295,53 +277,6 @@ class RapportDAO extends IRapportDAO{
         //Si une erreur est survenue, on la lance
         } catch (error) {
             throw new Error("An error occurred while fetching report:", error);
-        }
-    }
-
-    /**
-     * Permet de taguer un rapport avec un mot clé
-     * @param {string} titre - Le rapport visé
-     * @throws {Error} l'erreur si les rapports n'ont pas pu être trouvé
-     */
-    async GetRapportByTitre(titre) {
-    const token = sessionStorage.getItem("token");
-
-    if (!token) {
-        throw new Error("Utilisateur non authentifié");
-    }
-
-    const apiUrl =
-        this.Dao.adresseAPI +
-        "Rapports/GetRapportByTitre?titre=" +
-        encodeURIComponent(titre);
-
-    try {
-        const response = await fetch(apiUrl, {
-            method: "GET",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Accept": "application/json"
-            }
-        });
-
-        if (!response.ok) {
-            // Lecture du message d'erreur côté API si disponible
-            let errorMessage = `Erreur HTTP ${response.status}`;
-            try {
-                const errorBody = await response.json();
-                errorMessage = errorBody.message ?? errorMessage;
-            } catch {
-                // ignore si pas de JSON
-            }
-            throw new Error(errorMessage);
-        }
-
-        return await response.json();
-
-    } catch (error) {
-        // On propage une erreur propre
-        console.error("GetRapportByTitre error:", error);
-        throw error;
     }
 }
 
