@@ -21,7 +21,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: ./Serveur/API
+          context: ./API
           dockerfile: Dockerfile
           push: true
           tags: |
