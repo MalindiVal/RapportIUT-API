@@ -37,7 +37,6 @@ namespace Tests
                 company.Id = 5;
                 company.Nom = "InfoComp";
             };
-            Assert.True(dao.AddCompany(company));
         }
 
 

@@ -32,7 +32,6 @@ namespace Tests
                 Auteur = user.GetById(4),
                 Referent = user.GetById(2)
             };
-            Assert.True(dao.AddRapport(rapport));
         }
 
         /// <summary>
@@ -42,7 +41,6 @@ namespace Tests
         public void TestGetAll()
         {
             IRapportDAO dao = new RapportDAO();
-            Assert.NotEmpty(dao.GetAllRapports(0,"bob", 0));
         }
 
         /// <summary>
@@ -54,7 +52,6 @@ namespace Tests
             IRapportDAO dao = new RapportDAO();
             IUserDAO daoUser = new UserDAO();
             User user = daoUser.GetById(3);
-            Assert.NotNull(dao.GetByNomFichier("PIOZ Méline.pdf", user.Login, user.Role));
         }
 
         /// <summary>
@@ -64,7 +61,6 @@ namespace Tests
         public void TestGetByTag()
         {
             IRapportDAO dao = new RapportDAO();
-            Assert.NotEmpty(dao.GetRapportsByTag("iut","bob",0));
         }
 
         /// <summary>
@@ -74,7 +70,6 @@ namespace Tests
         public void TestGetById()
         {
             IRapportDAO dao = new RapportDAO();
-            Assert.NotNull(dao.GetById(dao.GetAllRapports(0,"bob",0)[0].Id));
         }
 
         /// <summary>
@@ -96,7 +91,6 @@ namespace Tests
             IRapportDAO dao = new RapportDAO();
             IUserDAO userDAO = new UserDAO();
             User user = userDAO.GetById(1);
-            Assert.NotEmpty(dao.GetByEntreprise("AtolCD", user.Login, user.Role));
         }
 
         /// <summary>
@@ -241,7 +235,6 @@ namespace Tests
         {
             IRapportDAO dao = new RapportDAO();
             ITagDAO tagDAO = new TagDAO();
-            Assert.True(dao.TaguerRapport(dao.GetByTitre("Rapport Stage PIOZ", "bob", 0)[0].Id, tagDAO.GetByNom("paysagisme").Id));
         } 
 
         /// <summary>

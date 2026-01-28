@@ -173,34 +173,6 @@ namespace API.Controllers
         }
 
         /// <summary>
-        /// Calcule le nombre de rapport
-        /// </summary>
-        /// <param name="id">id du dernier rapport</param>
-        /// <returns>nombre de rapport</returns>
-        [Authorize]
-        [HttpGet("GetNombreRapport")]
-        public IActionResult GetNombreRapportLast([FromQuery] int id)
-        {
-
-            try
-            {
-                string login = User.FindFirstValue(ClaimTypes.Name);
-                int role;
-                if (!int.TryParse(User.FindFirstValue(ClaimTypes.Role), out role))
-                {
-                    return Unauthorized("Rôle invalide dans le token");
-                }
-                int nombreRapport = this.service.GetNombreRapportLast(id, login, role);
-                return Ok(nombreRapport);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-        }
-
-        /// <summary>
         /// Récupère les rapports en fonction des differents parametres
         /// </summary>
         /// <param name="titre">le titre du rapport</param>
