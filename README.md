@@ -3,15 +3,22 @@
 # RapportIUT
 
 Une application web réalisée en HTML/CSS/JS connecté à une API ASP.NET
-Lien vers le site : https://malindival.github.io/S3_B2_ReMOVe/
+
+Lien vers le client : https://github.com/MalindiVal/RapportIUT-Client
 
 ## Strucure du projet
-### Client
 
-### Serveur
+L'API est réaliseé en ASP.NET avec une base de donnée en SQLite
 
-##  Format des fichier
+### Les controllers
 
-Les fichiers sont contenus dans le dossier RapportDossier servant de stockage des rapports de stage et d'alternance
+- RapportController
+- TagController
+- UserController
 
-Les fichiers doivent respecter le format de nom ci-contre : Nom_Prenom_Annee(S ou A pour alternance ou stage)_Entreprise
+### Les Services
+
+- RapportService
+- TagService
+- UserService
+- JWTService
