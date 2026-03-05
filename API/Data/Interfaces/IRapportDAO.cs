@@ -48,7 +48,7 @@ namespace API.Data.Interfaces
         /// <param name="tags">Les differents tags</param>
         /// <param name="entreprise">Le Nom de l'entreprise</param>
         /// <returns>La liste des Rapports qui correspond avec les parametres</returns>
-        public List<Rapport> Filter(string login, int role, string? titre, string[]? tags, string? entreprise, string? auteur);
+        public List<Rapport> Filter(Rapport rapport);
 
         /// <summary>
         /// Permet de taguer un rapport avec un mot clé

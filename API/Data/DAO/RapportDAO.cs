@@ -290,15 +290,15 @@ LIMIT 5 OFFSET @Offset;
             return resultat;
         }
 
-        public List<Rapport> Filter(string login, int role, string? titre, string[]? tags, string? entreprise, string? auteur)
+        public List<Rapport> Filter(Rapport rapport)
         {
             List<Rapport> resultat = new List<Rapport>();
             try
             {
                
                     var parameters = new Dictionary<string, object>(){
-                        {"@Login",login},
-                      };
+                        {"@Login",rapport.Auteur.Login},
+                     };
 
                     //Définition de la récupération des données 
                     string query = "Select Rapport.id_rapport as Id, Rapport.fichier as Fichier, Rapport.titre as Titre, Rapport.confidentiel as Confidentiel," +
@@ -306,34 +306,28 @@ LIMIT 5 OFFSET @Offset;
                         "FROM Rapport ";
 
                     //Vérification des tags
-                    TagDAO dao = new TagDAO();
                     List<string> whereConditions = new List<string>();
 
-                    if (tags != null && tags.Length > 0)
+                    if (rapport.Tags.Count() > 0)
                     {
                         query += "JOIN Taguer ON Rapport.id_rapport = Taguer.id_rapport ";
                         List<string> tagConditions = new List<string>();
-                        for (int i = 0; i < tags.Length; i++)
+                        for (int i = 0; i < rapport.Tags.Count(); i++)
                         {
-                            TagClass? restag = dao.GetByNom(tags[i]);
-
-                            if (restag != null)
-                            {
-                                long tagId = restag.Id;
-                                string paramName = $"@tag{i}";
-                                tagConditions.Add($"Taguer.id_tag = {paramName}");
-                                parameters.Add(paramName, tagId);
-                            }
+                            string paramName = $"@tag{i}";
+                            tagConditions.Add($"Taguer.id_tag = {paramName}");
+                            parameters.Add(paramName, rapport.Tags[i].Id);
                         }
                         whereConditions.Add($"({string.Join(" AND ", tagConditions)})");
                     }
 
                     //Vérification du titre
-                    if (!string.IsNullOrEmpty(titre))
+                    if (!string.IsNullOrEmpty(rapport.Titre))
                     {
-                        whereConditions.Add("(UPPER(titre) LIKE '%"+titre+"%')");
-                        parameters.Add("@titre", titre);
+                        whereConditions.Add("(UPPER(titre) LIKE '%"+ rapport.Titre + "%')");
+                        parameters.Add("@titre", rapport.Titre);
                     }
+                    string entreprise = rapport.Entreprise.Nom;
 
                     //Vérification de l'entreprise
                     if (!string.IsNullOrEmpty(entreprise))
@@ -343,16 +337,19 @@ LIMIT 5 OFFSET @Offset;
                         parameters.Add("@entreprise", entreprise);
                     }
 
-                    //Vérification de l'auteur
-                    if (!string.IsNullOrEmpty(auteur))
+                    string auteur = rapport.Auteur.Login;
+
+                //Vérification de l'auteur
+                if (!string.IsNullOrEmpty(auteur))
                     {
                         query += "JOIN Utilisateur ON Rapport.auteur = utilisateur.id_utilisateur";
                         whereConditions.Add(" ((UPPER(Utilisateur.nom) = Upper(@auteur)))");
                         parameters.Add("@auteur", auteur);
                     }
+                int role = rapport.Auteur.Role;
 
-                    //Vérification des droits d'accès
-                    if (role != null)
+                //Vérification des droits d'accès
+                if (role != null)
                     {
                         if (role == 2)
                         {
@@ -419,31 +416,13 @@ LIMIT 5 OFFSET @Offset;
                     //Definition des resultats
                     foreach (DataRow row in data.Rows)
                     {
-                        Rapport rapport = new Rapport();
-                        rapport.Id = row.Field<long>("Id");
-                        rapport.Fichier = row.Field<string>("Fichier");
-                        rapport.Titre = row.Field<string>("Titre");
-                        rapport.Confidential = row.Field<long>("Confidentiel") == 1;
+                        Rapport res = new Rapport();
+                        res.Id = row.Field<long>("Id");
+                        res.Fichier = row.Field<string>("Fichier");
+                        res.Titre = row.Field<string>("Titre");
+                        res.Confidential = row.Field<long>("Confidentiel") == 1;
                         string date = row.Field<string>("DatePublication");
-                        rapport.DateDepose = DateTime.Parse(date);
-
-                        IUserDAO userDAO = new UserDAO();
-                        if (row.Field<long?>("Auteur") != null)
-                        {
-                            User etudiant = new User();
-                            etudiant.Id = row.Field<long>("Auteur");
-                            etudiant.Auteur = userDAO.GetById(etudiant.Id).Auteur;
-                            rapport.Auteur = etudiant;
-                        }
-
-                        ICompanyDAO compDAO = new CompanyDAO();
-                        if (row.Field<long?>("Entreprise") != null)
-                        {
-                            Company e = new Company();
-                            e.Id = row.Field<long>("Entreprise");
-                            e.Nom = compDAO.GetById(e.Id).Nom;
-                            rapport.Entreprise = e;
-                        }
+                        res.DateDepose = DateTime.Parse(date);
 
                         if (row.Field<long?>("Referant") != null)
                         {
@@ -454,7 +433,7 @@ LIMIT 5 OFFSET @Offset;
 
                         resultat.Add(rapport);
                     }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -570,24 +549,6 @@ LIMIT 5 OFFSET @Offset;
                         else rapport.Confidential = false;
                         string date = row.Field<string>("DatePublication");
                         rapport.DateDepose = DateTime.Parse(date);
-
-                        IUserDAO userDAO = new UserDAO();
-                        if (row.Field<long?>("Auteur") != null)
-                        {
-                            User etudiant = new User();
-                            etudiant.Id = row.Field<long>("Auteur");
-                            etudiant.Auteur = userDAO.GetById(etudiant.Id).Auteur;
-                            rapport.Auteur = etudiant;
-                        }
-
-                        ICompanyDAO compDAO = new CompanyDAO();
-                        if (row.Field<long?>("Entreprise") != null)
-                        {
-                            Company e = new Company();
-                            e.Id = row.Field<long>("Entreprise");
-                            e.Nom = compDAO.GetById(e.Id).Nom;
-                            rapport.Entreprise = e;
-                        }
 
                         if (row.Field<long?>("Referant") != null)
                         {
