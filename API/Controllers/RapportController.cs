@@ -162,6 +162,11 @@ namespace API.Controllers
                 {
                     return Unauthorized("Rôle invalide dans le token");
                 }
+                User user = new User
+                {
+                    Login = login,
+                    Role = role
+                };
                 long nombrePage = this.service.GetNombrePage(login, role);
                 return Ok(nombrePage);
             }
@@ -180,7 +185,7 @@ namespace API.Controllers
         /// <returns>les rapports avec les parametres correspondants</returns>
         [Authorize]
         [HttpGet("FilterRapport")]
-        public IActionResult FilterRapports(string? titre, [FromQuery] string[]? tags, string? entreprise, string? auteur)
+        public IActionResult FilterRapports(FilterParams options)
         {
             try
             {
@@ -190,8 +195,12 @@ namespace API.Controllers
                 {
                     return Unauthorized("Rôle invalide dans le token");
                 }
-
-                List<Rapport> results = this.service.FilterRapports(login, role, titre, tags, entreprise, auteur);
+                User user = new User
+                {
+                    Login = login,
+                    Role = role
+                };
+                List<Rapport> results = this.service.FilterRapports(user, options);
                 return Ok(results);
             }
             catch (Exception ex)
