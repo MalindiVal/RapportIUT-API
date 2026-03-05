@@ -10,6 +10,12 @@ namespace API.Data.DAO
     /// </summary>
     public class TagDAO : ITagDAO
     {
+        private IDatabase connection;
+
+        public TagDAO(IDatabase database)
+        {
+            connection = database;
+        }
 
         public TagClass? GetById(long id)
         {

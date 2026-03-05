@@ -15,12 +15,17 @@ namespace API.Data.DAO
     /// </summary>
     public class RapportDAO : IRapportDAO
     {
+        private IDatabase connection;
+
+        public RapportDAO(IDatabase database)
+        {
+            connection = database;
+        }
 
         public Rapport? GetById(long id)
         {
             Rapport? rapport = null;
-            using (SQLiteConnector connection = new SQLiteConnector())
-            {
+            
                 //Definition des paramètres
                 var parameters = new Dictionary<string, object>()
                 {
@@ -61,17 +66,13 @@ namespace API.Data.DAO
                     professeur.Id = data.Rows[0].Field<long>("Referant"); 
                     rapport.Referent = professeur;
                 }
-            }
             return rapport;
         }
-
 
         public Rapport AddRapport(Rapport rapport)
         {
             try
             {
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
                     //Definition de la confidentialité
                     int confidentiel = 0;
                     if ((rapport.Confidential) == true) { confidentiel = 1; }
@@ -92,7 +93,7 @@ namespace API.Data.DAO
                     //Execution de la requête
                     rapport.Id = connection.ExecuteInsert("INSERT INTO Rapport(fichier,titre,confidentiel,datePublication,auteur,entreprise,referent) " +
                         "VALUES (@Fichier,@Titre,@Confidentiel,@DatePublication,@Auteur ,@Entreprise ,@Referant)", parameters);
-                }
+               
             }
             catch (Exception ex)
             {
@@ -101,16 +102,13 @@ namespace API.Data.DAO
             return rapport;
         }
 
-
         public List<Rapport> GetAllRapports(int page)
         {
 
             List<Rapport> resultat = new List<Rapport>();
             try
             {
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
-
+               
                     //Definition des paramètres
                     
                     string query = "";
@@ -167,8 +165,6 @@ LIMIT 5 OFFSET @Offset;
 
                         resultat.Add(rapport);
                     }
-
-                }
             }
             catch (Exception ex)
             {
@@ -182,9 +178,7 @@ LIMIT 5 OFFSET @Offset;
             long resultat = 1;
             try
             {
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
-                    long nombreRapport = 0;
+                long nombreRapport = 0;
 
                     //Définition des paramètres
                     var parameters = new Dictionary<string, object>()
@@ -205,7 +199,7 @@ LIMIT 5 OFFSET @Offset;
 
                     resultat = nombreRapport / 5;
                     if (nombreRapport % 5 != 0) resultat++;
-                }
+               
             }
             catch (Exception ex)
             {
@@ -219,8 +213,7 @@ LIMIT 5 OFFSET @Offset;
             int resultat = 1;
             try
             {
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
+               
                     int nombreRapport = 0;
 
                     var parameters = new Dictionary<string, object>()
@@ -288,7 +281,7 @@ LIMIT 5 OFFSET @Offset;
                         nombreRapport = data.Rows.Count;
                     }
                     resultat = nombreRapport;
-                }
+                
             }
             catch (Exception ex)
             {
@@ -302,9 +295,7 @@ LIMIT 5 OFFSET @Offset;
             List<Rapport> resultat = new List<Rapport>();
             try
             {
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
-                    //Définition des paramètres
+               
                     var parameters = new Dictionary<string, object>(){
                         {"@Login",login},
                       };
@@ -498,14 +489,12 @@ LIMIT 5 OFFSET @Offset;
             }
         }
 
-       
         public List<Rapport> GetByTitre(string titre, string login, int role)
         {
             List<Rapport> liste = new List<Rapport>();
             try 
             { 
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
+                
                     var parameters = new Dictionary<string, object>()
                     {
                         {"@Login",login},
@@ -609,7 +598,6 @@ LIMIT 5 OFFSET @Offset;
 
                         liste.Add(rapport);
                     }
-                }
             }
             catch (Exception ex)
             {
@@ -618,17 +606,13 @@ LIMIT 5 OFFSET @Offset;
             return liste;
         }
 
-       
-
         public void DeleteRapport(long id_rapport, string login, int role)
         {
             bool estReussi = false;
             UploadHandler uploadHandler = new UploadHandler();
             try
             {
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
-                    //Définition des paramètres
+               
                     var parameters = new Dictionary<string, object>()
                     {
                         {"@Id", id_rapport},
@@ -674,7 +658,7 @@ LIMIT 5 OFFSET @Offset;
                     {
                         throw new DAOError("Suppresion refusée");
                     }
-                }
+                
             }
             catch (Exception ex)
             {

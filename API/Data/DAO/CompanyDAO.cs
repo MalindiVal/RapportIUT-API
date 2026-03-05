@@ -11,6 +11,13 @@ namespace API.Data.DAO
     /// </summary>
     public class CompanyDAO : ICompanyDAO
     {
+        private IDatabase connection;
+
+        public CompanyDAO(IDatabase database)
+        {
+            connection = database;
+        }
+
         public Company? GetById(long id)
         {
             Company? entreprise = null;
@@ -39,10 +46,7 @@ namespace API.Data.DAO
         public Company? GetByNom(string nom)
         {
             Company? entreprise = null;
-            using (SQLiteConnector connection = new SQLiteConnector())
-            {
-                //Définition des paramètres 
-                var parameters = new Dictionary<string, object>()
+            var parameters = new Dictionary<string, object>()
                 {
                     {"@Name",nom }
                 };
@@ -57,7 +61,7 @@ namespace API.Data.DAO
                     entreprise.Id = data.Rows[0].Field<long>("Id");
                     entreprise.Nom = data.Rows[0].Field<string>("Nom");
                 }
-            }
+            
             return entreprise;
         }
 
@@ -66,8 +70,7 @@ namespace API.Data.DAO
             
             try
             {
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
+
                     //Définition des paramètres
                     var parameters = new Dictionary<string, object>()
                     {
@@ -76,7 +79,7 @@ namespace API.Data.DAO
 
                     //Execution de la requête
                     entreprise.Id = (int)connection.ExecuteInsert("INSERT INTO Entreprise (nom) VALUES (@Nom)", parameters);
-                }
+            
             }
             catch (Exception ex)
             {
@@ -94,8 +97,6 @@ namespace API.Data.DAO
             List<Company> resultat = new List<Company>();
             try
             {
-                using (SQLiteConnector connection = new SQLiteConnector())
-                {
                     //Execution de la requête
                     var data = connection.ExecuteQuery("SELECT Entreprise.id_entreprise as Id, Entreprise.nom as Nom FROM Entreprise");
 
@@ -110,7 +111,7 @@ namespace API.Data.DAO
                         resultat.Add(entreprise);
                     }
 
-                }
+          
             }
             catch (Exception ex)
             {

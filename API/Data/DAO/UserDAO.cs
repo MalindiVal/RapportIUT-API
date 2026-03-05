@@ -11,6 +11,12 @@ namespace API.Data.DAO
     /// </summary>
     public class UserDAO : IUserDAO
     {
+        private IDatabase connection;
+
+        public UserDAO(IDatabase database)
+        {
+            connection = database;
+        }
 
         public User LoginUser(User user)
         {
