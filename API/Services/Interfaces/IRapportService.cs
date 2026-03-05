@@ -44,11 +44,8 @@ namespace API.Services.Interfaces
         /// <summary>
         /// Filtrage des rapports 
         /// </summary>
-        /// <param name="titre">le titre du rapport à rechercher</param>
-        /// <param name="tags">les tags du rapport</param>
-        /// <param name="entreprise">le nom de l'entreprise concernée par le rapport</param>
         /// <returns></returns>
-        public List<Rapport> FilterRapports(string login, int role, string? titre, string[]? tags, string? entreprise, string? auteur);
+        public List<Rapport> FilterRapports(User user,FilterParams filter);
 
         /// <summary>
         /// Permet de supprimer un rapport précis

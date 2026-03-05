@@ -127,10 +127,53 @@ namespace API.Services.Realisations
             return dao.GetNombreRapportLast(id, login, role);
         }
 
-        public List<Rapport> FilterRapports(string login, int role, string? titre, string[]? tags, string? entreprise, string? auteur)
+        public List<Rapport> FilterRapports(User user, FilterParams filter)
         {
             List<Rapport> rapports = new List<Rapport>();
-            rapports =  this.dao.Filter(login, role, titre, tags, entreprise, auteur);
+            List<TagClass> tags = new List<TagClass>();
+            Rapport rapport = new Rapport();
+            foreach (string t in filter.Tags)
+            {
+                TagClass? res = this.tagService.GetByNom(t);
+                if (res != null)
+                {
+                    tags.Add(res);
+                }
+            }
+            rapport.Auteur = filter.Auteur != null ? this.userService.GetByNom(filter.Auteur) : null;
+            rapport.Entreprise = filter.Entreprise != null ? this.companyService.GetByNom(filter.Entreprise) : null;
+            rapport.Auteur = filter.Auteur != null ? this.userService.GetByNom(filter.Auteur) : null;
+            rapport.Titre = filter.Titre;
+            rapport.Auteur = user;
+            rapport.Tags = tags;
+
+            rapports =  this.dao.Filter(rapport);
+
+            foreach (Rapport r in rapports)
+            {
+                if (r.Referent != null)
+                {
+                    r.Referent = userService.GetById(r.Referent.Id);
+                }
+                if (r.Auteur != null)
+                {
+                    r.Auteur = userService.GetById(r.Auteur.Id);
+                }
+                if (r.Entreprise != null)
+                {
+                    r.Entreprise = companyService.GetById(r.Entreprise.Id);
+                }
+                if (r.Tags != null)
+                {
+                    List<TagClass> tagsRes = new List<TagClass>();
+                    foreach (TagClass t in r.Tags)
+                    {
+                        tagsRes.Add(t);
+                        r.Tags = tagsRes;
+                    }
+                }
+            }
+
             return rapports;
         }
 
