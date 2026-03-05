@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using API.Data.Interfaces;
+using Microsoft.Data.Sqlite;
 using System.Data;
 
 namespace API.Data
@@ -6,17 +7,18 @@ namespace API.Data
     /// <summary>
     /// Connecteur à la bdd
     /// </summary>
-    public class SQLiteConnector : IDisposable
+    public class SQLiteConnector : IDisposable, IDatabase
     {
         //Connection
         private SqliteConnection connection;
+        private string connectionString = "Data Source=ReMOVeDataBaseSQLite.db";
 
         /// <summary>
         /// Création de la connection
         /// </summary>
         public SQLiteConnector()
         {
-            this.connection = new SqliteConnection("Data Source=ReMOVeDataBaseSQLite.db");
+            this.connection = new SqliteConnection(connectionString);
         }
 
         /// <summary>

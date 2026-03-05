@@ -1,4 +1,5 @@
-﻿using API.Data.DAO;
+﻿using API.Data;
+using API.Data.DAO;
 using API.Data.Interfaces;
 using API.Services.Interfaces;
 using API.Services.Realisations;
@@ -16,6 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 /// ---- Injections des dépendances ----
+builder.Services.AddScoped<IDatabase, SQLiteConnector>();
+
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 builder.Services.AddScoped<ICompanyDAO, CompanyDAO>();
