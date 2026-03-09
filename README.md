@@ -24,6 +24,7 @@ Elle fournit des routes pour gérer les entités principales :
 ✔️ JWTService – Gestion du token d’authentification (JWT)
 
 ## 🗂 Structure du projet
+```
 RapportIUT‑API/
 ├── API/                          # Code de l’API ASP.NET
 │   ├── Controllers/             # Endpoints de l’API
@@ -33,6 +34,7 @@ RapportIUT‑API/
 ├── docker-compose.yml           # Pour exécuter API + DB en local
 ├── Serveur.sln                  # Solution Visual Studio
 └── README.md                   # Ce fichier
+```
 
 ## 🚀 Installation & Usage
 ### 🔧 Prérequis
