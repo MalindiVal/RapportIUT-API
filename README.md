@@ -12,16 +12,16 @@ Elle fournit des routes pour gérer les entités principales :
 
 ### 📌 Controllers
 
-✔️ RapportController – Gestion des rapports
-✔️ TagController – Gestion des tags associés aux rapports
-✔️ UserController – Gestion des utilisateurs et authentification
+- ✔️ RapportController – Gestion des rapports
+- ✔️ TagController – Gestion des tags associés aux rapports
+- ✔️ UserController – Gestion des utilisateurs et authentification
 
 ### 📌 Services
 
-✔️ RapportService
-✔️ TagService
-✔️ UserService
-✔️ JWTService – Gestion du token d’authentification (JWT)
+- ✔️ RapportService
+- ✔️ TagService
+- ✔️ UserService
+- ✔️ JWTService – Gestion du token d’authentification (JWT)
 
 ## 🗂 Structure du projet
 ```
